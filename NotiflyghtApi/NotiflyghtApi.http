@@ -1,0 +1,6 @@
+@NotiflyghtApi_HostAddress = http://localhost:5253
+
+GET {{NotiflyghtApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
