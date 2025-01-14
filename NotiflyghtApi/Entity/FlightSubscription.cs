@@ -1,8 +1,8 @@
 namespace NotiflyghtApi.Entity;
 
-public class FlightTracking
+public class FlightSubscription
 {
-    public string NotificationEmail { get; set; }
     public string FlightNumber { get; set; }
     public DateTime FlightDate { get; set; }
+    public IEnumerable<string> NotificationEmails { get; set; }
 }
