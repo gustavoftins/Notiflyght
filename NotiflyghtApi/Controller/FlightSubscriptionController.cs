@@ -10,13 +10,13 @@ public class FlightSubscriptionController : ControllerBase
 {
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] FlightSubscription flightSubscription)
+    public async Task<IActionResult> Post([FromBody] Flight flight)
     {
         return Ok();
     }
 
     [HttpPatch]
-    public async Task<IActionResult> Patch([FromBody] FlightSubscription flightSubscription)
+    public async Task<IActionResult> Patch([FromBody] Flight flight)
     {
         return Ok();
     }

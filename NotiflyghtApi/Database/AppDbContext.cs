@@ -10,5 +10,5 @@ public class AppDbContext : DbContext
 
     }
     
-    public DbSet<FlightSubscription> FlightSubscriptions { get; set; }
+    public DbSet<Flight> FlightSubscriptions { get; set; }
 }
