@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using NotiflyghtApi.Dto;
 using NotiflyghtApi.Entity;
 
 namespace NotiflyghtApi.Controller;
@@ -9,8 +10,17 @@ public class FlightSubscriptionController : ControllerBase
 {
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Flight flight)
+    public async Task<IActionResult> Post([FromBody] FlightDto flight)
     {
+        if (flight.FlightDate < DateTimeOffset.UtcNow)
+            return BadRequest();
+
+        if (string.IsNullOrEmpty(flight.FlightNumber))
+            return BadRequest();
+
+        if (string.IsNullOrEmpty(flight.NotificationEmail))
+            return BadRequest();
+        
         return Ok();
     }
 
