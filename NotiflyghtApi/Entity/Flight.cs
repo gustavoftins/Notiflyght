@@ -9,4 +9,15 @@ public class Flight
     public string FlightNumber { get; set; }
     public DateTimeOffset FlightDate { get; set; }
     public IEnumerable<FlightSubscription> NotificationEmails { get; set; }
+
+
+    public Flight()    {
+    }
+
+    public Flight(string flightNumber, DateTimeOffset flightDate, string notificationEmail)
+    {
+        FlightNumber = flightNumber;
+        FlightDate = flightDate;
+        NotificationEmails = [new FlightSubscription(notificationEmail)];
+    }
 }

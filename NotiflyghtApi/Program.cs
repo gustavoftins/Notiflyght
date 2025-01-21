@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NotiflyghtApi.Database;
+using NotiflyghtApi.Interfaces;
+using NotiflyghtApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(optionsBuilder =>
 {
     optionsBuilder.UseNpgsql(builder.Configuration["PostgresConnectionString"]!);
 });
+
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 
 var app = builder.Build();
 
