@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using NotiflyghtApi.Database;
 using NotiflyghtApi.Entity;
 using NotiflyghtApi.Interfaces;
@@ -15,6 +16,18 @@ public class FlightRepository : IFlightRepository
 
     public async Task<Flight> AddAsync(Flight flight)
     {
+        var existingFlight = await _context.Flight.Include(f => f.NotificationEmails).FirstOrDefaultAsync(x => x.FlightNumber == flight.FlightNumber && x.FlightDate == flight.FlightDate);
+
+        if (existingFlight != null)
+        {
+            var emails = existingFlight.NotificationEmails.Concat(flight.NotificationEmails);
+            existingFlight.NotificationEmails = emails.ToList();
+            _context.Update(existingFlight);
+
+            await _context.SaveChangesAsync();
+            return flight;
+        }
+        
         _context.Flight.Add(flight);
 
         await _context.SaveChangesAsync();

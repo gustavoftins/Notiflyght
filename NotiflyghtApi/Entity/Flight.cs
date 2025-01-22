@@ -17,7 +17,7 @@ public class Flight
     public Flight(string flightNumber, DateTimeOffset flightDate, string notificationEmail)
     {
         FlightNumber = flightNumber;
-        FlightDate = flightDate;
+        FlightDate = flightDate.UtcDateTime.Date;
         NotificationEmails = [new FlightSubscription(notificationEmail)];
     }
 }
